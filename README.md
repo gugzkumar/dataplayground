@@ -1,12 +1,12 @@
 # Data Playground
 
-Data Playground is a Full Stack Web Application, that runs on Django and Django Rest Framework for the Backend and REACT and Redux for the Frontend. Data Playground with only its Chat Application is availible in a previous repository: https://github.com/gugzkumar/dataplayground_chatroom.
+Data Playground(DP) is a Full Stack Web Application, that runs on Django and Django Rest Framework for the Backend and REACT and Redux for the Frontend. With DP you can upload CSV files to train Machine Learning Models such as Linear Regression and Logistic Regression, and then run them either through the Front End or through the REST Api. Data Playground with only its Chat Application is availible in a previous repository: https://github.com/gugzkumar/dataplayground_chatroom.
 
 ## Table of Contents
 - [Login](#1)
 - [Chat Room](#2)
 - [Create and Run Models](#3)
-- [Using REST API](#4)
+- [Using REST Api](#4)
   - [Get List of Models](#5)
   - [Get Model By ID/pk](#6)
   - [Create Model](#7)
@@ -89,4 +89,4 @@ Have a working server of [Redis](https://redis.io/download) running on your mach
 
 --------------------------
 
-Note: Look out for new releases. More models and features will be added to data playground.
+Note: Look out for new releases. More models and features will be added to Data Playground.
