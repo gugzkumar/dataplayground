@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!--Loads the path to your static files-->
+{% load render_bundle from webpack_loader %}
+{% load staticfiles%}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
+<link rel="stylesheet" type="text/css" href="{% static "style.css" %}"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src ="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src ="{% static "react.js" %}"></script>
+<script type="text/javascript" src ={% static "react-dom.js" %}></script>
+<script type="text/javascript" src ={% static "browser.min.js" %}></script>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Playground</title>
+    <div class="container-fluid page-header text-center" style="margin-top: auto; margin-bottom: 0px; padding-bottom: 0px; border-bottom: 0px" >
+        <h2>DataPlayground</h2>
+      <p>Created By Gagan Tunuguntla</p>
+    </div>
+    <nav class="navbar navbar-default" style="padding-top: 0; border:0px">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+          <div class="collapse navbar-collapse" id="topNavBar">
+            <ul class="nav navbar-nav navbar-left">
+                <li class="{% if 'users' in request.path %}active{% endif %}"><a href="{% url 'users:user_home' %}">Home</a></li>
+                <li class="{% if 'chatroom' in request.path %}active{% endif %}"><a href="{% url 'chatroom:index' %}">Chatroom</a></li>
+                <li class="{% if 'linreg' in request.path %}active{% endif %}"><a href="{% url 'linreg:index' %}">Linear Regression</a></li>
+                <li class="{% if 'logreg' in request.path %}active{% endif %}"><a href="{% url 'logreg:index' %}">Logistic Regression</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                    <li class="">
+                        <a href="{% url 'users:login_user' %}">
+                            <span class="glyphicon glyphicon-user" aria-hidden = "true"></span>&nbsp;
+                            {{ request.user }}
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'users:logout_user' %}">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden = "true"></span>&nbsp;
+                            Logout
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="">
+                        <a href="{% url 'users:index' %}">
+                            <span class="glyphicon glyphicon-log-in" aria-hidden = "true"></span>&nbsp;
+                            Login
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+          </div>
+      </div>
+    </nav>
+
+</head>
+<div id ='{{ request.session.session_key }}'>
+
+</div>
+<body>
+    {% block body %}{% comment %}
+        <div class = "container-fluid text-center">
+            <h1>This is an empty template please overide the body block </h1>
+        </div>{% endcomment %}
+    {% endblock %}
+</body>
+</html>

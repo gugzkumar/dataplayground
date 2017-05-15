@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles%}
+{% load render_bundle from webpack_loader %}
+
+{% block body %}
+    <div class="container-fluid">
+        <h1 style="text-align: center">Linear Regression App</h1>
+        <div class="row" style="margin-left: 20px; margin-right: 20px; margin-top: 10px; background-color: #1CB94A; color: black">
+            <h2 style="text-align: left; margin-left: 20px">Try Existing Model</h2>
+        </div>
+
+        <div class="row" style="margin-left: 20px; margin-right: 20px; background: black; color: white" id="select_model">
+            <div class="col-md-4 pre-scrollable" style="max-height: 200px">
+                <h3 style="background: blue">Model A</h3>
+                <h3>Temperature Model</h3>
+                <h3>Gravity Model</h3>
+                <h3>Model B</h3>
+                <h3>LINREG</h3>
+                <h3>LINREG</h3>
+                <h3>LINREG</h3>
+            </div>
+            <div class="col-md-4">
+                <h3></h3>
+                <textarea rows="7" class="form-control" style="resize: none;"></textarea>
+                <button class="btn btn-block btn-default">Submit Test Data</button>
+                <h3></h3>
+            </div>
+            <div class="col-md-4">
+                <h1>Result:</h1>
+                <h3>2.3212132</h3>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 20px; margin-right: 20px; margin-top: 10px; background-color: #1CB94A; color: black">
+            <h2 style="text-align: left; margin-left: 20px">Create New Model</h2>
+        </div>
+        <div class="row" style="margin-left: 20px; margin-right: 20px; padding-bottom: 10px; padding-top: 10px; background: black; color: white">
+            <div class="col-md-12" id="create_model">1
+                <label>Model Name:</label>
+                <input type="text" class="form-control" id="usr">
+                <label>Training Data:</label>
+                <label class="custom-file form-control">
+                    <input type="file" id="file" class="custom-file-input">
+                    <span class="custom-file-control"></span>
+                </label>
+                <div class="alert alert-success">
+                  <strong>Success!</strong> Indicates a successful or positive action.
+                </div>
+                <button class="btn btn-block btn-default">Create New Model</button>
+            </div>
+        </div>
+    </div>
+    {% render_bundle 'linreg' %}
+{% endblock %}
