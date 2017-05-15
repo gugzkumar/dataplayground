@@ -23,7 +23,7 @@ Once the application is set up and running you can register and login by visitin
 <a id='2'/><br>
 ## Chat Room
 Then by either clicking Chatroom on the navigation bar or visiting `localhost:8000/chatroom` you can try using the chat application. Select a room a by clicking one the left panel. Then try joining the conversation by hitting subimt or pressing Enter after typing in the text area.
-![](https://cloud.githubusercontent.com/assets/24658548/26040748/ea129628-38f5-11e7-8470-13d3b1a0f60f.png)
+![](https://cloud.githubusercontent.com/assets/24658548/26042887/0ff1f9b8-3907-11e7-8b49-6df1c4282fa0.png)
 
 <a id='3'/><br>
 ## Create and Run Models
