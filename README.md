@@ -1,6 +1,6 @@
 # Data Playground
 
-Data Playground(DP) is a Full Stack Web Application, that runs on Django and Django Rest Framework for the Backend and REACT and Redux for the Frontend. With DP you can upload CSV files to train Machine Learning Models such as Linear Regression and Logistic Regression, and then run them either through the Front End or through the REST Api. 
+Data Playground(DP) is a Full Stack Web Application, that runs on Django and Django Rest Framework for the Backend and REACT and Redux for the Frontend. With DP you can upload CSV files to train Machine Learning Models such as Linear Regression and Logistic Regression. These models will then be saved on the application's database so that you can run them any time either through the Front End or through the REST Api. 
 <br><br>
 Data Playground with only its Chat Application is availible in a previous repository: <br>https://github.com/gugzkumar/dataplayground_chatroom.
 
