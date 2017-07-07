@@ -16,6 +16,9 @@ urlpatterns = [
     #/users/logout_user
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
 
+    #users/register_user
+    url(r'^register_user/$', views.register_user, name='register_user'),
+
     #users/user_home
     url(r'^user_home/$', views.user_home, name='user_home')
 ]

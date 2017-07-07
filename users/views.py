@@ -37,6 +37,29 @@ def create_auth(request):
     else:
         return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['POST'])
+def register_user(request):
+    if request.method == "POST":
+        print(request.POST['username'])
+        print(request.POST['password'])
+        print(request.POST['confirm_password'])
+        print(request.data)
+        form = UserForm(request.POST)
+        #request.POST.dict()
+
+        if form.is_valid():
+            user =form.save(commit=False)
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save()
+        else:
+            return Response({'Errors': form.errors}, status=status.HTTP_400_BAD_REQUEST)
+            print(form.errors)
+
+        return Response({'Message': 'User Created You Can Log In'}, status=status.HTTP_200_OK)
+    else:
+        return Response({'Errors':{'__all__':'Invalid Request'}}, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 def login_user(request):

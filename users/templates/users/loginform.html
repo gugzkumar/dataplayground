@@ -188,7 +188,10 @@
                                         </div>
                                     </div>{% endcomment %}
                                 </form>
-                                <form id="register-form" action="#" method="post" role="form" style="display: none;">
+                                <form id="register-form" action="" method="" role="form" style="display: none;">
+                                    <div id="register-status-container" class="form-group" style="display:none">
+                                        <h6 id="register-status" class="bg-success" style="text-align: left; margin: 0; padding: 10px"></h6>
+                                    </div>
                                     <div class="form-group">
                                         <input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
                                     </div>
@@ -236,6 +239,72 @@
             });
 
         });
+
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+
+
+        $("#register-form").submit(function(e) {
+            $.ajax(
+            {
+                url:'../register_user/',
+                type:'POST',
+                data:$('#register-form').serialize(),
+                success: (data)=>{
+                    $("#register-form .form-group>input").prop('readonly', true);
+                    $("#register-form input[type='submit']").prop('disabled', 'disabled');
+                    $("#register-status")[0].innerHTML="User Created Feel Free To Login"
+                    $("#register-status")[0].className="bg-success"
+                    $("#register-status-container")[0].style.display="block"
+                },
+                error: (jq, status, message) => {
+                    $("#register-status")[0].className="bg-danger";
+                    $("#register-status-container")[0].style.display="block";
+                    var error_json = jq.responseJSON.Errors
+                    var error_list ='<ul style="list-style:none;margin:0;padding:0">'
+                    for(var e in error_json){
+                        if(e=='__all__'){
+                            error_list = error_list+'<li>'+error_json[e]+'</li>'
+                        }
+                        else{
+                            error_list = error_list+'<li>'+e+': '+error_json[e]+'</li>'
+                        }
+                    }
+                    error_list += '</ul>'
+                    $("#register-status")[0].innerHTML= error_list;
+
+                }
+            });
+
+            return false;
+        });
+
 
     </script>
 {% endblock %}
